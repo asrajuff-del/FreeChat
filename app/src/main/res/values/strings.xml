@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FreeChat</string>
+    <string name="enter_name">अपना नाम डालो</string>
+    <string name="start">शुरू करो</string>
+    <string name="type_message">मैसेज लिखो...</string>
+    <string name="chats">Chats</string>
+    <string name="new_chat">New Chat</string>
+    <string name="searching">रास्ता ढूँढ रहा हूँ...</string>
+    <string name="delivered">Delivered ✓✓</string>
+    <string name="sent">Sent ✓</string>
+</resources>
