@@ -24,28 +24,24 @@
         android:textSize="14sp"
         android:layout_marginBottom="48dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <EditText
+        android:id="@+id/etName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/enter_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="24dp">
+        android:hint="अपना नाम डालो"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        android:inputType="textPersonName"
+        android:maxLength="30"
+        android:padding="16dp"
+        android:background="@drawable/input_bg"
+        android:layout_marginBottom="24dp"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:inputType="textPersonName"
-            android:maxLength="30"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/btnStart"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:text="@string/start"
+        android:text="शुरू करो"
         android:textSize="18sp"
         android:backgroundTint="@color/green"
         android:textColor="@color/white"/>
