@@ -2,10 +2,8 @@ package com.freechat.app;
 
 import android.Manifest;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +17,7 @@ public class ChatListActivity extends AppCompatActivity {
     private static final int PERM_REQUEST = 100;
     private BleManager bleManager;
     private ArrayList<String> deviceList = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
+    private ChatAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class ChatListActivity extends AppCompatActivity {
         if (tvUser != null) tvUser.setText(name + " #" + uuid);
 
         ListView lvDevices = findViewById(R.id.lvDevices);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deviceList);
+        adapter = new ChatAdapter(this, deviceList);
         if (lvDevices != null) lvDevices.setAdapter(adapter);
 
         bleManager = new BleManager(this, (devName, address) -> {
@@ -68,8 +66,6 @@ public class ChatListActivity extends AppCompatActivity {
             if (bleManager.hasPermissions()) {
                 bleManager.startScan();
                 Toast.makeText(this, "आस-पास ढूँढ रहा हूँ...", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Permission चाहिए!", Toast.LENGTH_SHORT).show();
             }
         }
     }
