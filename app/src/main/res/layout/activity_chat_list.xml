@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_bg"
+    android:background="#121212"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_surface"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="56dp"
+        android:background="#1DB954"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="💬 FreeChat"
-            android:textColor="@color/green"
+            android:layout_weight="1"
+            android:text="FreeChat"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -24,7 +26,7 @@
             android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/grey"
+            android:textColor="#FFFFFF"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -32,16 +34,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="आस-पास के लोग:"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:padding="16dp"/>
+        android:background="#1E1E1E"
+        android:padding="12dp"
+        android:text="🔵 आस-पास के लोग ढूँढ रहा हूँ..."
+        android:textColor="#1DB954"
+        android:textSize="13sp"/>
 
     <ListView
         android:id="@+id/lvDevices"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/dark_surface"
+        android:background="#121212"
+        android:divider="#1E1E1E"
         android:dividerHeight="1dp"/>
 
 </LinearLayout>
