@@ -1,5 +1,6 @@
 package com.freechat.app;
 
+import android.content.Intent;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -33,7 +34,17 @@ public class ChatListActivity extends AppCompatActivity {
 
         ListView lvDevices = findViewById(R.id.lvDevices);
         adapter = new ChatAdapter(this, deviceList);
-        if (lvDevices != null) lvDevices.setAdapter(adapter);
+        if (lvDevices != null) {
+            lvDevices.setAdapter(adapter);
+            lvDevices.setOnItemClickListener((parent, view, position, id) -> {
+                String item = deviceList.get(position);
+                String[] parts = item.split("\n");
+                String devName = parts.length > 0 ? parts[0] : "Unknown";
+                Intent intent = new Intent(this, ChatActivity.class);
+                intent.putExtra("name", devName);
+                startActivity(intent);
+            });
+        }
 
         bleManager = new BleManager(this, (devName, address) -> {
             runOnUiThread(() -> {
