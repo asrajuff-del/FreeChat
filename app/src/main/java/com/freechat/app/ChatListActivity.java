@@ -1,7 +1,7 @@
 package com.freechat.app;
 
-import android.content.Intent;
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ public class ChatListActivity extends AppCompatActivity {
 
     private static final int PERM_REQUEST = 100;
     private BleManager bleManager;
+    private WiFiDirectManager wifiDirectManager;
     private ArrayList<String> deviceList = new ArrayList<>();
     private ChatAdapter adapter;
 
@@ -48,8 +49,21 @@ public class ChatListActivity extends AppCompatActivity {
 
         bleManager = new BleManager(this, (devName, address) -> {
             runOnUiThread(() -> {
-                deviceList.add(devName + "\n" + address);
-                adapter.notifyDataSetChanged();
+                String entry = "🔵 " + devName + "\n" + address;
+                if (!deviceList.contains(entry)) {
+                    deviceList.add(entry);
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        });
+
+        wifiDirectManager = new WiFiDirectManager(this, (devName, address) -> {
+            runOnUiThread(() -> {
+                String entry = devName + "\n" + address;
+                if (!deviceList.contains(entry)) {
+                    deviceList.add(entry);
+                    adapter.notifyDataSetChanged();
+                }
             });
         });
 
@@ -61,7 +75,8 @@ public class ChatListActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.BLUETOOTH_SCAN,
                 Manifest.permission.BLUETOOTH_CONNECT,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.NEARBY_WIFI_DEVICES
             }, PERM_REQUEST);
         } else {
             ActivityCompat.requestPermissions(this, new String[]{
@@ -74,10 +89,9 @@ public class ChatListActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERM_REQUEST) {
-            if (bleManager.hasPermissions()) {
-                bleManager.startScan();
-                Toast.makeText(this, "आस-पास ढूँढ रहा हूँ...", Toast.LENGTH_SHORT).show();
-            }
+            bleManager.startScan();
+            wifiDirectManager.startDiscovery();
+            Toast.makeText(this, "🔍 BLE + WiFi से ढूँढ रहा हूँ...", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -85,5 +99,6 @@ public class ChatListActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (bleManager != null) bleManager.stopScan();
+        if (wifiDirectManager != null) wifiDirectManager.stop();
     }
 }
