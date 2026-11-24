@@ -1,6 +1,5 @@
 package com.freechat.app;
 
-import android.app.Activity;
 import android.content.Context;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -29,13 +28,6 @@ public class QrNfcManager {
 
     public boolean isNfcEnabled() {
         return nfcAdapter != null && nfcAdapter.isEnabled();
-    }
-
-    public void sendViaNfc(Activity activity, String message) {
-        if (!isNfcEnabled()) return;
-        NdefRecord record = NdefRecord.createTextRecord("en", message);
-        NdefMessage ndefMessage = new NdefMessage(new NdefRecord[]{record});
-        nfcAdapter.setNdefPushMessage(ndefMessage, activity);
     }
 
     public String readNfcTag(Tag tag) {
