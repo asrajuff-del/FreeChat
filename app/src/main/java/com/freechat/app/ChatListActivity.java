@@ -76,6 +76,10 @@ public class ChatListActivity extends AppCompatActivity {
         });
 
         requestPermissionsAndScan();
+
+        // Demo contact
+        deviceList.add("Demo User\n00:00:00:00:00:00");
+        adapter.notifyDataSetChanged();
     }
 
     private void requestPermissionsAndScan() {
