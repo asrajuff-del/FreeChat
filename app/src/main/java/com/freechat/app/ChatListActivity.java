@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,13 @@ public class ChatListActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ChatActivity.class);
                 intent.putExtra("name", devName);
                 startActivity(intent);
+            });
+        }
+
+        LinearLayout tabStatus = findViewById(R.id.tabStatus);
+        if (tabStatus != null) {
+            tabStatus.setOnClickListener(v -> {
+                startActivity(new Intent(this, RouteStatusActivity.class));
             });
         }
 
@@ -91,7 +99,7 @@ public class ChatListActivity extends AppCompatActivity {
         if (requestCode == PERM_REQUEST) {
             bleManager.startScan();
             wifiDirectManager.startDiscovery();
-            Toast.makeText(this, "🔍 BLE + WiFi से ढूँढ रहा हूँ...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "🔍 ढूँढ रहा हूँ...", Toast.LENGTH_SHORT).show();
         }
     }
 
