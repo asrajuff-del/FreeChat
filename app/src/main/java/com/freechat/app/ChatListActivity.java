@@ -50,10 +50,18 @@ public class ChatListActivity extends AppCompatActivity {
 
         LinearLayout tabStatus = findViewById(R.id.tabStatus);
         if (tabStatus != null) {
-            tabStatus.setOnClickListener(v -> {
-                startActivity(new Intent(this, RouteStatusActivity.class));
-            });
+            tabStatus.setOnClickListener(v ->
+                startActivity(new Intent(this, RouteStatusActivity.class)));
         }
+
+        LinearLayout tabGroups = findViewById(R.id.tabGroups);
+        if (tabGroups != null) {
+            tabGroups.setOnClickListener(v ->
+                startActivity(new Intent(this, PremiumActivity.class)));
+        }
+
+        deviceList.add("Demo User\n00:00:00:00:00:00");
+        adapter.notifyDataSetChanged();
 
         bleManager = new BleManager(this, (devName, address) -> {
             runOnUiThread(() -> {
@@ -76,10 +84,6 @@ public class ChatListActivity extends AppCompatActivity {
         });
 
         requestPermissionsAndScan();
-
-        // Demo contact
-        deviceList.add("Demo User\n00:00:00:00:00:00");
-        adapter.notifyDataSetChanged();
     }
 
     private void requestPermissionsAndScan() {
