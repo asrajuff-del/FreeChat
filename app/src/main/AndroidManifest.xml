@@ -34,6 +34,7 @@
         <activity android:name=".ChatListActivity"/>
         <activity android:name=".ChatActivity"/>
         <activity android:name=".RouteStatusActivity"/>
+        <activity android:name=".PremiumActivity"/>
 
     </application>
 </manifest>
