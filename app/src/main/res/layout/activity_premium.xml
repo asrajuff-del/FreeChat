@@ -30,7 +30,7 @@
             android:background="#1E1E1E"
             android:orientation="vertical"
             android:padding="20dp"
-            android:margin="16dp">
+            android:layout_margin="16dp">
 
             <TextView
                 android:layout_width="match_parent"
